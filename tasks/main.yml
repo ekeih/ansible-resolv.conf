@@ -1,0 +1,27 @@
+---
+
+- meta: flush_handlers
+
+- name: check if local dns server is available
+  command: host -W 3 google.com {{ local_nameserver }}
+  ignore_errors: yes
+  register: dns_result
+  tags: resolv.conf
+
+- name: enable resolv.conf for local dns
+  set_fact:
+    localDNS: yes
+  when: dns_result|succeeded
+  tags: resolv.conf
+
+- name: enable resolv.conf for remote dns
+  set_fact:
+    localDNS: no
+  when: dns_result|failed
+  tags: resolv.conf
+
+- name: deploy resolv.conf
+  template:
+    src: resolv.conf.j2
+    dest: /etc/resolv.conf
+  tags: resolv.conf

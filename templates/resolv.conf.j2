@@ -1,0 +1,9 @@
+# {{ ansible_managed }}
+
+{% if localDNS %}
+nameserver {{ local_nameserver }}
+{% else %}
+{%   for server in public_nameservers %}
+nameserver {{ server.server }}
+{%   endfor %}
+{% endif %}
