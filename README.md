@@ -12,8 +12,8 @@ The default values are localhost and the OpenDNS servers:
 local_nameserver: 127.0.0.1
 
 public_nameservers:
-  - server: 208.67.220.220
-  - server: 208.67.222.222
+  - 208.67.220.220
+  - 208.67.222.222
 ```
 
 You can overwrite this values with normal Ansible variables.

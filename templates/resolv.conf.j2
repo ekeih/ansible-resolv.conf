@@ -4,6 +4,6 @@
 nameserver {{ local_nameserver }}
 {% else %}
 {%   for server in public_nameservers %}
-nameserver {{ server.server }}
+nameserver {{ server }}
 {%   endfor %}
 {% endif %}
