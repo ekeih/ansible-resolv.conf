@@ -4,6 +4,7 @@
 
 - name: check if local dns server is available
   command: host -W 3 google.com {{ local_nameserver }}
+  changed_when: False
   ignore_errors: yes
   register: dns_result
   tags: resolv.conf
